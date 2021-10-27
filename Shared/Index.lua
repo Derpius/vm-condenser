@@ -13,16 +13,15 @@ for _, package in ipairs(loaded) do
 	loaded[package] = true
 end
 
--- Get persistent data
-local persistentData = Package.GetPersistentData()
-if not persistentData.blacklist then
-	persistentData.blacklist = {}
-	Package.SetPersistentData("blacklist", {})
-end
+-- Load config
+local config = Package.Require("Config.lua")
+if not config then config = {} end
+
+if not config.blacklist then config.blacklist = {} end
 
 -- Turn blacklist array into a hashmap for quick lookup
 local blacklist = {}
-for _, package in ipairs(persistentData.blacklist) do
+for _, package in ipairs(config.blacklist) do
 	loaded[package] = true
 end
 

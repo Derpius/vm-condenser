@@ -11,7 +11,7 @@ Set up your server's `Config.toml` to only load packages you want running concur
 **Do not leave all package fields in the config blank, depending on the order packages end up getting loaded, this may duplicate only a few or almost all of your installed packages**  
 
 ## Configuration
-You can set a package load blacklist in `PersistentData.toml` for any packages you don't load from the server config but you don't want this loading either.  
+You can set a package load blacklist in `Shared/Config.lua` for any packages you don't load from the server config but you don't want this loading either.  
 
 ## Hot Reloading
 Attempting to reload packages loaded into this VM will cause 2 instances of them to be running, instead reload this package.  
@@ -21,3 +21,5 @@ Attempting to reload packages loaded into this VM will cause 2 instances of them
 Due to the various `Unsubscribe` functions unsubscribing **all** event handlers within the same Lua VM, any packages that don't specify the optional callback parameter to remove only that handler **will** remove **every other package's event handlers loaded into this VM**.  
 
 Some packages may also pollute the global table due to expecting their own environment to work in, although that's bad practice anyway some packages may do this due to not being designed to share an env.  
+
+Any package using persistent data will have its settings applied to this package's `PersistentData.toml`  
