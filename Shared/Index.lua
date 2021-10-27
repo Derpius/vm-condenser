@@ -28,6 +28,7 @@ end
 -- Load every unloaded package
 for _, package in pairs(packages) do
 	if not loaded[package] and not blacklist[package] then
+		Package.Log("VM Condenser: Loading package " .. package)
 		Package.RequirePackage(package)
 	end
 end
