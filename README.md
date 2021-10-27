@@ -8,7 +8,10 @@ VM Condenser runs along side any packages you still want to be concurrent by onl
 ## Installation
 Set up your server's `Config.toml` to only load packages you want running concurrently (aka separate globals), **every** other package you have installed will be loaded into this VM.  
 
-**Do not leave all package fields in the config blank, depending on the order packages end up getting loaded, this may duplicate only a few or almost all of your installed packages**
+**Do not leave all package fields in the config blank, depending on the order packages end up getting loaded, this may duplicate only a few or almost all of your installed packages**  
+
+## Configuration
+You can set a package load blacklist in `PersistentData.toml` for any packages you don't load from the server config but you don't want this loading either.  
 
 ## Hot Reloading
 Attempting to reload packages loaded into this VM will cause 2 instances of them to be running, instead reload this package.  

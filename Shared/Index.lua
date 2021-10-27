@@ -13,9 +13,22 @@ for _, package in ipairs(loaded) do
 	loaded[package] = true
 end
 
+-- Get persistent data
+local persistentData = Package.GetPersistentData()
+if not persistentData.blacklist then
+	persistentData.blacklist = {}
+	Package.SetPersistentData("blacklist", {})
+end
+
+-- Turn blacklist array into a hashmap for quick lookup
+local blacklist = {}
+for _, package in ipairs(persistentData.blacklist) do
+	loaded[package] = true
+end
+
 -- Load every unloaded package
 for _, package in pairs(packages) do
-	if not loaded[package] then
+	if not loaded[package] and not blacklist[package] then
 		Package.RequirePackage(package)
 	end
 end
